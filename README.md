@@ -5,6 +5,7 @@
 
 ![alt text](http://cdn.appstorm.net/web.appstorm.net/files/2012/02/mailjet_logo_200x200.png "Mailjet")
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/27e09136429c41a9b9a4230a450b6e79)](https://www.codacy.com/app/dev_21/mailjet-apiv3-php?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AMOSoft/mailjet-apiv3-php&amp;utm_campaign=Badge_Grade)
 ![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)
 ![Current Version](https://img.shields.io/badge/version-1.1.2--php5.3-green.svg)
 

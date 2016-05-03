@@ -1,5 +1,5 @@
 {
-    "name": "AMOSoft/mailjet-apiv3-php",
+    "name": "amosoft/mailjet-apiv3-php",
     "description": "PHP 5.3 wrapper for the Mailjet API",
     "keywords": ["mailjet", "api", "v3", "php", "email"],
     "homepage": "https://github.com/AMOSoft/mailjet-apiv3-php",

@@ -7,20 +7,22 @@
  * @category Mailjet_API
  * @package  Mailjet-apiv3
  * @author   Guillaume Badi <gbadi@mailjet.com>
+ * @author   AMO & Soft <dev@amo-soft.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     dev.mailjet.com
  */
 
 namespace Mailjet;
 
-use GuzzleHttp\Client as GuzzleClient;
-use GuzzleHttp\Exception\ClientException;
+use Guzzle\Http\Client as GuzzleClient;
+use Guzzle\Http\Exception\BadResponseException as ClientException;
 
 /**
  * This is the Mailjet Request class
  * @category Mailjet_API
  * @package  Mailjet-apiv3
  * @author Guillaume Badi <gbadi@mailjet.com>
+ * @author   AMO & Soft <dev@amo-soft.com>
  * @license MIT https://licencepath.com
  * @link http://link.com
  */
@@ -44,11 +46,8 @@ class Request extends GuzzleClient
      */
     public function __construct($auth, $method, $url, $filters, $body, $type)
     {
-        parent::__construct(['defaults' => [
-            'headers' => [
-                'user-agent' => Config::USER_AGENT . phpversion() . '/' . Client::WRAPPER_VERSION
-            ]
-        ]]);
+        parent::__construct();
+        $this->setUserAgent(Config::USER_AGENT . phpversion() . '/' . Client::WRAPPER_VERSION);
         $this->type = $type;
         $this->auth = $auth;
         $this->method = $method;
@@ -65,20 +64,27 @@ class Request extends GuzzleClient
      */
     public function call($call)
     {
-        $payload = [
-            'headers'  => ['content-type' => $this->type],
+        $payload = array(
+            'headers'  => array('content-type' => $this->type),
             'query' => $this->filters,
             'auth' => $this->auth,
-            ($this->type === 'application/json' ? 'json' : 'body') => $this->body,
-        ];
-
+        );
+        
+        if ($this->body) {
+            $payload['body'] = ($this->type === 'application/json' ? json_encode($this->body) : $this->body);
+        }
+        
         $response = null;
         if ($call) {
             try {
-                $response = call_user_func_array(
-                    array($this, strtolower($this->method)), [
-                    $this->url, $payload]
+                $request = $this->createRequest(
+                    $this->method, 
+                    $this->url, 
+                    null,
+                    null,
+                    $payload
                 );
+                $response = $request->send();
             }
             catch (ClientException $e) {
                 $response = $e->getResponse();

@@ -5,27 +5,22 @@
 
 ![alt text](http://cdn.appstorm.net/web.appstorm.net/files/2012/02/mailjet_logo_200x200.png "Mailjet")
 
-[![Codacy Badge](https://api.codacy.com/project/badge/grade/3fa729f3750849ce8e0471b0487439cb)](https://www.codacy.com/app/gbadi/mailjet-apiv3-php)
-[![Build Status](https://travis-ci.org/mailjet/mailjet-apiv3-php.svg?branch=master)](https://travis-ci.org/mailjet/mailjet-apiv3-php)
 ![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)
-![Current Version](https://img.shields.io/badge/version-1.0.2-green.svg)
+![Current Version](https://img.shields.io/badge/version-1.1.2--php5.3-green.svg)
 
-[Mailjet][mailjet] API Client.
+[Mailjet][mailjet] API Client, compatible with the old PHP 5.3.
 
 Check out all the resources and all the PHP code examples on the official documentation: [Maijlet Documentation][doc]
 
 ## Requirements
 
-`PHP >= 5.4`
+`PHP >= 5.3`
 
 ## Installation
 
 ``` bash
-composer require mailjet/mailjet-apiv3-php
+composer require AMOSoft/mailjet-apiv3-php
 ```
-Without composer:
-
-Clone or Download [this repository](https://github.com/mailjet/mailjet-apiv3-php-no-composer) that already contains all the dependencies and the `vendor/autoload.php` file. If you encounter any issue, please post it here and not on the mirror repository.
 
 ## Getting Started !
 

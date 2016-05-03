@@ -7,6 +7,7 @@
  * @category Mailjet_API
  * @package  Mailjet-apiv3
  * @author   Guillaume Badi <gbadi@mailjet.com>
+ * @author   AMO & Soft <dev@amo-soft.com>
  * @license  https://opensource.org/licenses/MIT
  * @link     dev.mailjet.com
  */
@@ -19,6 +20,7 @@ use Psr\Http\Message\ResponseInterface;
  * @category Mailjet_API
  * @package  Mailjet-apiv3
  * @author Guillaume Badi <gbadi@mailjet.com>
+ * @author   AMO & Soft <dev@amo-soft.com>
  * @license MIT https://opensource.org/licenses/MIT
  * @link dev.mailjet.com
  */
@@ -150,7 +152,7 @@ class Response
              */
             $maxIntLength = strlen((string) PHP_INT_MAX) - 1;
             $jsonWithoutBigIntegers = preg_replace('/:\s*(-?\d{'.$maxIntLength.',})/', ': "$1"', $body);
-            $object = json_decode($jsonWithoutBigIntegers);
+            $object = json_decode($jsonWithoutBigIntegers, true, 512);
         }
         return $object;
     }

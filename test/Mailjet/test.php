@@ -28,24 +28,24 @@ class MailjetTest extends \PHPUnit_Framework_TestCase
 
         $this->assertUrl('/REST/contact', $client->get(Resources::$Contact));
 
-        $this->assertFilters(['id' => 2], $client->get(Resources::$Contact, [
-            'filters' => ['id' => 2]
-        ]));
+        $this->assertFilters(array('id' => 2), $client->get(Resources::$Contact, array(
+            'filters' => array('id' => 2)
+        )));
 
-        $response = $client->get(Resources::$ContactGetcontactslists, ['id' => 2]);
+        $response = $client->get(Resources::$ContactGetcontactslists, array('id' => 2));
         $this->assertUrl('/REST/contact/2/getcontactslists', $response);
 
         // error on sort !
-        $response = $client->get(Resources::$Contact, [
-            'filters' => ['sort' => 'email+DESC']
-        ]);
+        $response = $client->get(Resources::$Contact, array(
+            'filters' => array('sort' => 'email+DESC')
+        ));
         $this->assertUrl('/REST/contact', $response);
 
-        $this->assertUrl('/REST/contact/2', $client->get(Resources::$Contact, ['id' => 2]));
+        $this->assertUrl('/REST/contact/2', $client->get(Resources::$Contact, array('id' => 2)));
 
         $this->assertUrl(
             '/REST/contact/test@mailjet.com',
-            $client->get(Resources::$Contact, ['id' => 'test@mailjet.com'])
+            $client->get(Resources::$Contact, array('id' => 'test@mailjet.com'))
         );
     }
 
@@ -53,17 +53,17 @@ class MailjetTest extends \PHPUnit_Framework_TestCase
     {
         $client = new Client('', '', false);
 
-        $email = [
+        $email = array(
           'FromName'     => 'Mailjet PHP test',
-          'FromEmail'    => 'gbadi@student.42.fr',
+          'FromEmail'    => 'dev@amo-soft.com',
           'Text-Part'    => 'Simple Email test',
           'Subject'      => 'PHPunit',
           'Html-Part'    => '<h3>Simple Email Test</h3>',
-          'Recipients'   => [['Email' => 'test@mailjet.com']],
+          'Recipients'   => array(array('Email' => 'test@mailjet.com')),
           'MJ-custom-ID' => 'Hello ID',
-        ];
+        );
 
-        $ret = $client->post(Resources::$Email, ['body' => $email]);
+        $ret = $client->post(Resources::$Email, array('body' => $email));
         $this->assertUrl('/send', $ret);
         $this->assertPayload($email, $ret);
     }

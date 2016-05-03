@@ -7,6 +7,7 @@
  * @category Mailjet_API
  * @package  Mailjet-apiv3
  * @author   Guillaume Badi <gbadi@mailjet.com>
+ * @author   AMO & Soft <dev@amo-soft.com>
  * @license  MIT https://opensource.org/licenses/MIT
  * @link     dev.mailjet.com
  */
@@ -18,6 +19,7 @@ namespace Mailjet;
  * @category Mailjet_API
  * @package  Mailjet-apiv3
  * @author Guillaume Badi <gbadi@mailjet.com>
+ * @author   AMO & Soft <dev@amo-soft.com>
  * @license MIT https://licencepath.com
  * @link http://link.com
  */
@@ -56,12 +58,12 @@ class Client
     private function _call($method, $resource, $action, $args)
     {
         $args = array_merge(
-            [
-            'id' => '',
-            'actionid' => '',
-            'filters' => [],
-            'body' => '{}'
-            ],
+            array(
+                'id' => '',
+                'actionid' => '',
+                'filters' => array(),
+                'body' => ''
+            ),
             array_change_key_case($args)
         );
 
@@ -70,14 +72,15 @@ class Client
         $contentType = ($action == 'csvdata/text:plain' || $action == 'csverror/text:csv') ?
                 'text/plain' : 'application/json';
 
-        return (new Request(
-            [$this->apikey, $this->apisecret],
+        $request = new Request(
+            array($this->apikey, $this->apisecret),
             $method,
             $url,
             $args['filters'],
             $args['body'],
             $contentType
-        ))->call($this->call);
+        );
+        return $request->call($this->call);
     }
 
     /**
@@ -97,7 +100,7 @@ class Client
      * @param array $args     Request arguments
      * @return Response
      */
-    public function post($resource, $args = [])
+    public function post($resource, $args = array())
     {
         return $this->_call('POST', $resource[0], $resource[1], $args);
     }
@@ -108,7 +111,7 @@ class Client
      * @param array $args     Request arguments
      * @return Response
      */
-    public function get($resource, $args = [])
+    public function get($resource, $args = array())
     {
         return $this->_call('GET', $resource[0], $resource[1], $args);
     }
@@ -119,7 +122,7 @@ class Client
      * @param array $args     Request arguments
      * @return Response
      */
-    public function put($resource, $args = [])
+    public function put($resource, $args = array())
     {
         return $this->_call('PUT', $resource[0], $resource[1], $args);
     }
@@ -130,7 +133,7 @@ class Client
      * @param array $args     Request arguments
      * @return Response
      */
-    public function delete($resource, $args = [])
+    public function delete($resource, $args = array())
     {
         return $this->_call('DELETE', $resource[0], $resource[1], $args);
     }

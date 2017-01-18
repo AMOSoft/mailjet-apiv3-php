@@ -60,15 +60,16 @@ class Request extends GuzzleClient
      * Trigger the actual call
      * TODO: DATA API
      * @param $call
+     * @param $options
      * @return Response the call response
      */
-    public function call($call)
+    public function call($call, array $options = array())
     {
-        $payload = array(
+        $payload = array_merge($options, array(
             'headers'  => array('content-type' => $this->type),
             'query' => $this->filters,
             'auth' => $this->auth,
-        );
+        ));
         
         if ($this->body) {
             $payload['body'] = ($this->type === 'application/json' ? json_encode($this->body) : $this->body);

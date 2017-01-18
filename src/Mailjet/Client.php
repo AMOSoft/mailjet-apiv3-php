@@ -53,9 +53,10 @@ class Client
      * @param string $resource mailjet resource
      * @param string $action   mailjet resource action
      * @param array  $args     Request arguments
+     * @param array  $options  Request options
      * @return Response server response
      */
-    private function _call($method, $resource, $action, $args)
+    private function _call($method, $resource, $action, $args, array $options = array())
     {
         $args = array_merge(
             array(
@@ -80,7 +81,7 @@ class Client
             $args['body'],
             $contentType
         );
-        return $request->call($this->call);
+        return $request->call($this->call, $options);
     }
 
     /**
@@ -98,44 +99,48 @@ class Client
      * Trigger a POST request
      * @param array $resource Mailjet Resource/Action pair
      * @param array $args     Request arguments
+     * @param array $options  Request options
      * @return Response
      */
-    public function post($resource, $args = array())
+    public function post($resource, $args = array(), array $options = array())
     {
-        return $this->_call('POST', $resource[0], $resource[1], $args);
+        return $this->_call('POST', $resource[0], $resource[1], $args, $options);
     }
 
     /**
      * Trigger a GET request
      * @param array $resource Mailjet Resource/Action pair
      * @param array $args     Request arguments
+     * @param array $options  Request options
      * @return Response
      */
-    public function get($resource, $args = array())
+    public function get($resource, $args = array(), array $options = array())
     {
-        return $this->_call('GET', $resource[0], $resource[1], $args);
+        return $this->_call('GET', $resource[0], $resource[1], $args, $options);
     }
 
     /**
      * Trigger a POST request
      * @param array $resource Mailjet Resource/Action pair
      * @param array $args     Request arguments
+     * @param array $options  Request options
      * @return Response
      */
-    public function put($resource, $args = array())
+    public function put($resource, $args = array(), array $options = array())
     {
-        return $this->_call('PUT', $resource[0], $resource[1], $args);
+        return $this->_call('PUT', $resource[0], $resource[1], $args, $options);
     }
 
     /**
      * Trigger a GET request
      * @param array $resource Mailjet Resource/Action pair
      * @param array $args     Request arguments
+     * @param array $options  Request options
      * @return Response
      */
-    public function delete($resource, $args = array())
+    public function delete($resource, $args = array(), array $options = array())
     {
-        return $this->_call('DELETE', $resource[0], $resource[1], $args);
+        return $this->_call('DELETE', $resource[0], $resource[1], $args, $options);
     }
 
     /**

@@ -8,7 +8,7 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/27e09136429c41a9b9a4230a450b6e79)](https://www.codacy.com/app/dev_AMO_Soft/mailjet-apiv3-php)
 [![Build Status](https://travis-ci.org/AMOSoft/mailjet-apiv3-php.svg?branch=master)](https://travis-ci.org/AMOSoft/mailjet-apiv3-php)
 ![MIT License](https://img.shields.io/badge/license-MIT-007EC7.svg?style=flat-square)
-![Current Version](https://img.shields.io/badge/version-1.1.2--php5.3-green.svg)
+![Current Version](https://img.shields.io/badge/version-1.2.0-green.svg)
 
 [Mailjet][mailjet] API Client, compatible with the old PHP 5.3.
 
